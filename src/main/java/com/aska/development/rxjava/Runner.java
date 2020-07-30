@@ -1,18 +1,12 @@
 package com.aska.development.rxjava;
 
 public class Runner {
-    //region Fields
-    //endregion
 
-    //region Properties
-    //endregion
+    public static void main(String[] args) {
+        Builder.just();
+        Builder.from();
 
-    //region Constructors
-    //endregion
+        Transformation.map();
+    }
 
-    //region Methods
-    //endregion
-
-    //region Inner 
-    //endregion
 }
