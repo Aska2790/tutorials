@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.aska.development.rxjava</groupId>
-    <artifactId>rxjava_baeldung</artifactId>
+    <artifactId>rxjava</artifactId>
     <version>1.0</version>
 
     <properties>

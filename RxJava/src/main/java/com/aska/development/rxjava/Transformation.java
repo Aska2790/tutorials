@@ -30,4 +30,17 @@ public class Transformation {
         
     }
 
+    public static void scan(){
+        String[] letters = {"a", "b", "c", "d", "e", "f", "g"};
+        Observable.fromArray(letters)
+                .scan((x, y) -> x + y)
+                .subscribe(next -> {
+                    System.out.println("Scan next " + next);
+                }, throwable -> {
+                    throwable.printStackTrace();
+                }, () -> {
+                    System.out.println("Scan complete");
+                });
+    }
+
 }

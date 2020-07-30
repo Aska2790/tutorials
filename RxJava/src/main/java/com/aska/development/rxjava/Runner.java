@@ -7,6 +7,7 @@ public class Runner {
         Builder.from();
 
         Transformation.map();
+        Transformation.scan();
     }
 
 }
