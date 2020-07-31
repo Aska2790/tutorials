@@ -2,8 +2,11 @@ package com.radiy.lcs.dagger.model;
 
 import android.util.Log;
 
+import com.radiy.lcs.dagger.di.PerActivity;
+
 import javax.inject.Inject;
 
+@PerActivity
 public class Car {
 
     //region Fields

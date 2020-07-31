@@ -4,17 +4,16 @@ import com.radiy.lcs.dagger.MainActivity;
 import com.radiy.lcs.dagger.model.Car;
 
 import javax.inject.Named;
-import javax.inject.Singleton;
 
 import dagger.BindsInstance;
 import dagger.Component;
 
-@Singleton
-@Component(modules = {
+@PerActivity
+@Component(dependencies = AppComponent.class,modules = {
         WheelsModule.class,
         PetrolEngineModule.class
 })
-public interface CarComponent {
+public interface ActivityComponent {
 
     Car getCar();
 
@@ -29,7 +28,9 @@ public interface CarComponent {
         @BindsInstance
         Builder engineCapacity(@Named("engineCapacity") int engineCapacity);
 
-        CarComponent build();
+        Builder appComponent(AppComponent appComponent);
+
+        ActivityComponent build();
 
 
     }
