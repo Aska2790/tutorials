@@ -11,19 +11,19 @@ import dagger.Provides;
 public class WheelsModule {
 
     @Provides
-    static Rims provideRims(){
+    Rims provideRims(){
         return new Rims();
     }
 
     @Provides
-    static Tires provideTires(){
+    Tires provideTires(){
         Tires tires = new Tires();
         tires.initialization();
         return tires;
     }
 
     @Provides
-    static Wheels provideWheels(Rims rims, Tires tires){
+    Wheels provideWheels(Rims rims, Tires tires){
         return new Wheels(rims, tires);
     }
 }

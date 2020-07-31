@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.radiy.lcs.dagger.di.CarComponent;
 import com.radiy.lcs.dagger.di.DaggerCarComponent;
+import com.radiy.lcs.dagger.di.DieselEngineModule;
 import com.radiy.lcs.dagger.model.Car;
 
 import javax.inject.Inject;
@@ -20,7 +21,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        CarComponent component = DaggerCarComponent.create();
+        CarComponent component = DaggerCarComponent.builder()
+                .dieselEngineModule(new DieselEngineModule(124))
+                .build();
+
         component.inject(this);
         mCar.drive();
     }

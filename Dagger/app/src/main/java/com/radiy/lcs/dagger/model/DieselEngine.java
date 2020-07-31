@@ -6,11 +6,17 @@ import javax.inject.Inject;
 
 public class DieselEngine implements Engine {
 
+    //region Fields
+
+    private int mHorsePower;
+
+    //endregion
+
     //region Constructors
 
-    @Inject
-    public DieselEngine() {
-        Log.d(Constant.TAG, "DieselEngine created " +  this);
+    public DieselEngine(int horsePower) {
+        mHorsePower = horsePower;
+        Log.d(Constant.TAG, String.format("DieselEngine created %s with %s power",this, mHorsePower));
     }
 
     //endregion
