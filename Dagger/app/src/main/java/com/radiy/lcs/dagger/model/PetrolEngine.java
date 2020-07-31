@@ -3,14 +3,24 @@ package com.radiy.lcs.dagger.model;
 import android.util.Log;
 
 import javax.inject.Inject;
+import javax.inject.Named;
 
 public class PetrolEngine implements Engine {
+
+    //region Fields
+
+    private int mHorsePower;
+    private int mEngineCapacity;
+
+    //endregion
 
     //region Constructors
 
     @Inject
-    public PetrolEngine() {
-        Log.d(Constant.TAG, "PetrolEngine created " +  this);
+    public PetrolEngine(@Named("horsePower")int horsePower, @Named("engineCapacity") int engineCapacity) {
+        mHorsePower = horsePower;
+        mEngineCapacity = engineCapacity;
+        Log.d(Constant.TAG, String.format("PetrolEngine created %s with %s power with %s capacity", this, mHorsePower, mEngineCapacity));
     }
 
     //endregion
