@@ -1,12 +1,22 @@
 package com.radiy.lcs.dagger.model;
 
-import javax.inject.Inject;
-
+/**
+ * we don`t own this class
+ */
 public class Wheels {
+
+    //region Fields
+
+    private Rims mRims;
+    private Tires mTires;
+
+    //endregion
+
     //region Constructors
 
-    @Inject
-    public Wheels() {
+    public Wheels(Rims rims, Tires tires) {
+        mRims = rims;
+        mTires = tires;
     }
 
     //endregion
