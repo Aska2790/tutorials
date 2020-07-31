@@ -8,6 +8,7 @@ public class Car {
 
     //region Fields
 
+    private Driver mDriver;
     private Wheels mWheels;
     private Engine mEngine;
 
@@ -29,7 +30,8 @@ public class Car {
     //region Constructors
 
     @Inject
-    public Car() {
+    public Car(Driver driver) {
+        mDriver = driver;
         Log.d(Constant.TAG, "Car created " +  this);
     }
 
@@ -39,7 +41,7 @@ public class Car {
 
     public void drive(){
         mEngine.start();
-        Log.d(Constant.TAG, "drive: ");
+        Log.d(Constant.TAG, String.format("drive %s car with driver %s: ", this, mDriver));
     }
 
     @Inject

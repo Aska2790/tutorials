@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.radiy.lcs.dagger.di.CarComponent;
 import com.radiy.lcs.dagger.di.DaggerCarComponent;
-import com.radiy.lcs.dagger.di.DieselEngineModule;
 import com.radiy.lcs.dagger.model.Car;
 
 import javax.inject.Inject;
@@ -15,6 +14,9 @@ public class MainActivity extends AppCompatActivity {
 
     @Inject
     protected Car mCar;
+
+    @Inject
+    protected Car mCar2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +29,9 @@ public class MainActivity extends AppCompatActivity {
                 .build();
 
         component.inject(this);
+
+
         mCar.drive();
+        mCar2.drive();
     }
 }
