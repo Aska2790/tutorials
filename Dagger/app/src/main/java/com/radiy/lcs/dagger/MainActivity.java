@@ -1,14 +1,19 @@
 package com.radiy.lcs.dagger;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.radiy.lcs.dagger.di.CarComponent;
 import com.radiy.lcs.dagger.di.DaggerCarComponent;
 import com.radiy.lcs.dagger.model.Car;
 
+import javax.inject.Inject;
+
 public class MainActivity extends AppCompatActivity {
+
+    @Inject
+    protected Car mCar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         CarComponent component = DaggerCarComponent.create();
-        Car car = component.getCar();
-        car.drive();
+        component.inject(this);
+        mCar.drive();
     }
 }

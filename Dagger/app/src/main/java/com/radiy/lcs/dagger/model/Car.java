@@ -11,16 +11,15 @@ public class Car {
     private Wheels mWheels;
     private Engine mEngine;
 
-
     //endregion
 
     //region Constructors
 
     @Inject
-    public Car(Wheels wheels, Engine engine) {
+    public Car(Engine engine, Wheels wheels) {
         mWheels = wheels;
         mEngine = engine;
-        Log.d(Constant.TAG, "Car dependencies injected: ");
+        Log.d(Constant.TAG, "Car dependencies injected: " +  this);
     }
 
     //endregion
