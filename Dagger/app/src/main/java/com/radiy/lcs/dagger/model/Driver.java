@@ -5,9 +5,24 @@ package com.radiy.lcs.dagger.model;
  */
 public class Driver {
 
+    //region Fields
+
+    private String mName;
+
+    //endregion
+
+    //region Properties
+
+    public String getName() {
+        return mName;
+    }
+
+    //endregion
+
     //region Constructors
 
-    public Driver() {
+    public Driver(String name) {
+        mName = name;
     }
     //endregion
 }

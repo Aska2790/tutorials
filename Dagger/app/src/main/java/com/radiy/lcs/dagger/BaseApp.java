@@ -4,6 +4,7 @@ import android.app.Application;
 
 import com.radiy.lcs.dagger.di.AppComponent;
 import com.radiy.lcs.dagger.di.DaggerAppComponent;
+import com.radiy.lcs.dagger.di.DriverModule;
 
 public class BaseApp extends Application {
 
@@ -18,7 +19,7 @@ public class BaseApp extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        mAppComponent = DaggerAppComponent.create();
+        mAppComponent =   DaggerAppComponent.factory().create(new DriverModule("Hans"));
     }
 
     //endregion

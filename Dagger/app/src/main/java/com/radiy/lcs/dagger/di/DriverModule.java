@@ -8,12 +8,30 @@ import dagger.Module;
 import dagger.Provides;
 
 @Module
-public abstract class DriverModule {
+public class DriverModule {
+
+    //region Fields
+
+    private String mName;
+
+    //endregion
+
+    //region Constructors
+
+    public DriverModule(String name) {
+        mName = name;
+    }
+
+    //endregion
+
+    //region Methods
 
     @Provides
     @Singleton
-    static Driver provideDriver(){
-        return new Driver();
+    Driver provideDriver(){
+        return new Driver(mName);
     }
+
+    //endregion
 
 }

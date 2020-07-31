@@ -44,7 +44,7 @@ public class Car {
 
     public void drive(){
         mEngine.start();
-        Log.d(Constant.TAG, String.format("drive %s car with driver %s: ", this, mDriver));
+        Log.d(Constant.TAG, String.format("drive %s car with driver %s with %s name ", this, mDriver, mDriver.getName()));
     }
 
     @Inject
