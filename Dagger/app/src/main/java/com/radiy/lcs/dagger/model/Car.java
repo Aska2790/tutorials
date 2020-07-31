@@ -38,6 +38,7 @@ public class Car {
     //region Methods
 
     public void drive(){
+        mEngine.start();
         Log.d(Constant.TAG, "drive: ");
     }
 

@@ -6,7 +6,8 @@ import com.radiy.lcs.dagger.model.Car;
 import dagger.Component;
 
 @Component(modules = {
-        WheelsModule.class
+        WheelsModule.class,
+        DieselEngineModule.class
 })
 public interface CarComponent {
 
