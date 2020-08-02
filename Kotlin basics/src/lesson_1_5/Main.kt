@@ -1,9 +1,10 @@
+package lesson_1_5
 
 fun main(args:Array<String>){
 
     val coordinates = Pair(1, 3)
     println("first ${coordinates.first}  second ${coordinates.second}")
-    println("Coordinates $coordinates"c
+    println("Coordinates $coordinates")
 
     val coordinatesDouble = Pair(1.0, 3.0)
     println("first ${coordinatesDouble.first}  second ${coordinatesDouble.second}")
