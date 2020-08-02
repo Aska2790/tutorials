@@ -17,6 +17,16 @@ fun main() {
         print(j)
         j += 1
     }while (j < 10)
-    
+
     println("----------------")
+
+    do {
+
+        if(j == 5){
+            break
+        }
+
+        print(j)
+        j += 1
+    }while (j < 10)
 }
