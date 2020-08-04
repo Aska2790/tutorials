@@ -20,7 +20,7 @@ fun main() {
         operator(value)
     }
 
-    //lambda 
+    //lambda
     handleInteger(10, { value -> println("$value") })
     handleInteger(10, { println("$it") })
 
