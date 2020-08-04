@@ -41,6 +41,7 @@ fun main() {
     println("first player ${players[0]}")
     println("players contains Alice? ${players.contains("Alice")}")
 
+
     val playersSlice = players.slice(1..3)
     printStringList(playersSlice)
 
@@ -62,4 +63,7 @@ fun main() {
 
     val dropTwoPlayer =  players.drop(2)
     printStringList(dropTwoPlayer)
+
+    val player = "Bob"
+    println("Index of $player = ${players.indexOf(player)}")
 }
