@@ -50,4 +50,25 @@ fun main() {
     }
 
     printMap(mutableMap)
+
+    fun performanceForCollection(){
+        println("Arrays")
+        println("Accessing byte index O(1)")
+        println("Inserting/Deleting O(1)")
+        println("==========================")
+
+        println("Lists")
+        println("Accessing byte index O(1)")
+        println("Inserting/Deleting O(N)")
+        println("==========================")
+
+
+        println("Maps")
+        println("Searching O(N)")
+        println("Accessing byte index N/A")
+        println("Inserting/Deleting O(1)")
+        println("==========================")
+    }
+
+    performanceForCollection();
 }
