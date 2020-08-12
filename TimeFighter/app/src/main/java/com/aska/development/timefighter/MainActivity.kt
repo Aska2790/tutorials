@@ -2,11 +2,14 @@ package com.aska.development.timefighter
 
 import android.os.Bundle
 import android.os.CountDownTimer
-import android.os.PersistableBundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
+import android.view.animation.AnimationUtils
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
@@ -38,17 +41,19 @@ class MainActivity : AppCompatActivity() {
         gameScoreTextView = findViewById(R.id.gameScoreTextView)
         timeLeftTextView = findViewById(R.id.timeLeftTextView)
 
-        tapMeButton.setOnClickListener { _ ->
+        tapMeButton.setOnClickListener { view ->
+            val bounceAnimation = AnimationUtils.loadAnimation(this, R.anim.bounce)
+            view.startAnimation(bounceAnimation)
             incrementScore()
         }
 
         gameScoreTextView.text = getString(R.string.yourScore, score)
 
-        if(savedInstanceState != null){
+        if (savedInstanceState != null) {
             score = savedInstanceState.getInt(SCORE_KEY)
             timeLeftOnTimer = savedInstanceState.getLong(TIME_LEFT_KEY)
             restoreGame()
-        }else{
+        } else {
             resetGame()
         }
 
@@ -69,6 +74,20 @@ class MainActivity : AppCompatActivity() {
         Log.d(TAG, "onDestroy: ")
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        super.onCreateOptionsMenu(menu)
+        menuInflater.inflate(R.menu.menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if(item.itemId == R.id.actionAbout){
+            showInfo()
+        }
+        return true
+    }
+
+
     //endregion
 
     //region Action
@@ -81,13 +100,15 @@ class MainActivity : AppCompatActivity() {
         score += 1
         val newScore = getString(R.string.yourScore, score)
         gameScoreTextView.text = newScore
+        val blinkAnimation = AnimationUtils.loadAnimation(this, R.anim.blink)
+        gameScoreTextView.startAnimation(blinkAnimation)
     }
 
     private fun restoreGame() {
-        gameScoreTextView.text =  getString(R.string.yourScore, score)
-        timeLeftTextView.text =  getString(R.string.timeLeft, timeLeftOnTimer/countDownInterval)
+        gameScoreTextView.text = getString(R.string.yourScore, score)
+        timeLeftTextView.text = getString(R.string.timeLeft, timeLeftOnTimer / countDownInterval)
 
-        countDownTimer = object : CountDownTimer(timeLeftOnTimer, countDownInterval){
+        countDownTimer = object : CountDownTimer(timeLeftOnTimer, countDownInterval) {
             override fun onFinish() {
                 endGame()
             }
@@ -136,6 +157,16 @@ class MainActivity : AppCompatActivity() {
         resetGame()
     }
 
+    private fun showInfo() {
+        val dialogTitle = getString(R.string.aboutTitle)
+        val dialogMessage = getString(R.string.aboutMessage)
+
+        AlertDialog.Builder(this)
+            .setTitle(dialogTitle)
+            .setMessage(dialogMessage)
+            .create()
+            .show()
+    }
     //endregion
 
     //region Inner
