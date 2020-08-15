@@ -1,8 +1,8 @@
 package com.aska.development.kotlin_in_action.chapter_4
 
-class Button : Animated(), View, Clickable, Focusable {
+open class Button : Animated(), View, Clickable, Focusable {
 
-    val buttonState: ButtonState = ButtonState()
+    private val buttonState: ButtonState = ButtonState()
 
 
     /**
@@ -34,6 +34,10 @@ class Button : Animated(), View, Clickable, Focusable {
 
     override fun restoreState(state: State) {
 
+    }
+
+    fun getDebugInfo():Debug{
+        return Debug()
     }
 
     /**
