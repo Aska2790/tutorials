@@ -1,6 +1,9 @@
 package com.aska.development.kotlin_in_action.chapter_4
 
-class Button : Animated(), Clickable, Focusable {
+class Button : Animated(), View, Clickable, Focusable {
+
+    val buttonState: ButtonState = ButtonState()
+
 
     /**
      * Реализация интерфейса Clickable
@@ -25,5 +28,25 @@ class Button : Animated(), Clickable, Focusable {
         println("I`m stopAnimating method in ${Button::class.simpleName}")
     }
 
+    override fun getCurrentState(): State {
+        return buttonState
+    }
 
+    override fun restoreState(state: State) {
+
+    }
+
+    /**
+     * Вложенный класс состояния кнопки
+     * */
+    class ButtonState : State {
+
+    }
+
+    /**
+     * Внутренний класс кнопки
+     * */
+    inner class Debug {
+        fun getOuterReference(): Button = this@Button
+    }
 }
