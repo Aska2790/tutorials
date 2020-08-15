@@ -32,7 +32,7 @@ open class RichButton : Clickable, Focusable {
     /**
      * Закрытый метод недоступный для переопределения в подклассах
      * */
-    fun disable(){
+    final fun disable(){
         println("I`m disable method in ${RichButton::class.simpleName}")
     }
 

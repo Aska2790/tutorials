@@ -24,4 +24,6 @@ class Button : Animated(), Clickable, Focusable {
         super<Animated>.stopAnimating()
         println("I`m stopAnimating method in ${Button::class.simpleName}")
     }
+
+
 }
