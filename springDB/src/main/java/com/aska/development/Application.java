@@ -56,12 +56,12 @@ public class Application {
 
     public void run(){
 
-//        mInsertUseCase.invoke();
-        final Song song = mGetUseCase.invoke();
-        System.out.println(song.toString());
-        final List<Song> songList = mGetAllUseCase.invoke();
-        songList.forEach(System.out::println);
-        mRemoveUseCase.invoke();
+        mInsertUseCase.invoke();
+//        final Song song = mGetUseCase.invoke();
+//        System.out.println(song.toString());
+//        final List<Song> songList = mGetAllUseCase.invoke();
+//        songList.forEach(System.out::println);
+//        mRemoveUseCase.invoke();
 
     }
 

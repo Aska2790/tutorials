@@ -10,7 +10,7 @@
 
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="org.sqlite.JDBC"/>
-        <property name="url" value="jdbc:sqlite:database/SpringDB/db"/>
+        <property name="url" value="jdbc:sqlite:database/SpringDB.db"/>
         <property name="username" value=""/>
         <property name="password" value=""/>
     </bean>
@@ -26,19 +26,19 @@
     </bean>
 
     <bean name="getUseCase" class="com.aska.development.interactors.GetSongUseCase">
-        <constructor-arg name="songDao" ref="jdbcSongDao"/>
+        <constructor-arg name="songDao" ref="springSongDao"/>
     </bean>
 
     <bean name="getAllUseCase" class="com.aska.development.interactors.GetAllSongUseCase">
-        <constructor-arg name="songDao" ref="jdbcSongDao"/>
+        <constructor-arg name="songDao" ref="springSongDao"/>
     </bean>
 
     <bean name="insertSongUseCase" class="com.aska.development.interactors.InsertSongUseCase">
-        <constructor-arg name="songDao" ref="jdbcSongDao"/>
+        <constructor-arg name="songDao" ref="springSongDao"/>
     </bean>
 
     <bean name="removeSongUseCase" class="com.aska.development.interactors.RemoveSongUseCase">
-        <constructor-arg name="songDao" ref="jdbcSongDao"/>
+        <constructor-arg name="songDao" ref="springSongDao"/>
     </bean>
 
     <bean name="application" class="com.aska.development.Application">

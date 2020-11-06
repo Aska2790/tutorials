@@ -6,12 +6,13 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.sql.DataSource;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 public class SpringSongDao implements SongDao {
 
     //region Fields
-
+    private static final String INSERT_SQL_QUERY = "INSERT INTO songs (name, author) VALUES (?,?)";
     private JdbcTemplate mTemplate;
 
     //endregion
@@ -42,8 +43,11 @@ public class SpringSongDao implements SongDao {
     }
 
     @Override
-    public void add(Song song) {
-
+    public void add(Song songParam) {
+        Objects.requireNonNull(songParam);
+        mTemplate.update(INSERT_SQL_QUERY,
+                songParam.getName(),
+                songParam.getAuthor());
     }
 
     @Override
