@@ -40,7 +40,8 @@ public interface SongDao {
      *
      * @param song песня для добавления
      * @throws NullPointerException     переданный параметр null
-     * @throws IllegalArgumentException некорректное параметр запроса
+     * @throws IllegalArgumentException некорректные параметры запроса
+     * @throws IllegalStateException не удалось выполнить запрос
      */
     void add(Song song);
 
@@ -49,6 +50,7 @@ public interface SongDao {
      *
      * @param name имя песни для удаление
      * @throws NullPointerException переданный параметр null
+     * @throws IllegalArgumentException некорректные параметры запроса
      */
     void remove(String name);
 

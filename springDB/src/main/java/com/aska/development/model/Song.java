@@ -28,4 +28,22 @@ public class Song {
     }
 
     //endregion
+
+    //region Constructors
+
+    public Song(String name, String author) {
+        mName = name;
+        mAuthor = author;
+    }
+
+    public Song() {
+    }
+
+    //endregion
+
+
+    @Override
+    public String toString() {
+        return String.format("Author : %s\nName : %s", mAuthor, mName);
+    }
 }
