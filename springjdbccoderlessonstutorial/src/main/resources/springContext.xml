@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean name="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value=""/>
+        <property name="username" value="root"/>
+        <property name="password" value="admin"/>
+    </bean>
+
+    <bean name="template" class="org.springframework.jdbc.core.JdbcTemplate">
+        <constructor-arg name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <bean name="studentRowMapper" class="com.aska.development.spring_jdbc.db.mapper.StudentRowMapper"/>
+
+    <bean name="studentDao" class="com.aska.development.spring_jdbc.db.dao.StudentDaoImpl">
+        <constructor-arg name="template" ref="template"/>
+        <constructor-arg name="rowMapper" ref="studentRowMapper"/>
+    </bean>
+
+    <bean name="application" class="com.aska.development.spring_jdbc.Application">
+        <constructor-arg name="studentDao" ref="studentDao"/>
+    </bean>
+</beans>
