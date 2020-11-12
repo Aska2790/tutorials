@@ -3,10 +3,10 @@ package com.aska.development.interactors;
 import com.aska.development.dao.SongDao;
 import com.aska.development.model.Song;
 
+import java.util.List;
 import java.util.Objects;
 
-public class InsertSongUseCase {
-
+public class GetAllAuthorSongsUseCase {
     //region Fields
 
     private SongDao mSongDao;
@@ -15,7 +15,7 @@ public class InsertSongUseCase {
 
     //region Constructors
 
-    public InsertSongUseCase(SongDao songDao) {
+    public GetAllAuthorSongsUseCase(SongDao songDao) {
         Objects.requireNonNull(songDao);
         mSongDao = songDao;
     }
@@ -24,11 +24,8 @@ public class InsertSongUseCase {
 
     //region Methods
 
-    public void invoke() {
-        mSongDao.add(new Song("Family", "Pink"));
-        mSongDao.add(new Song("Life", "Zivert"));
-        mSongDao.add(new Song("Some song", "Basta"));
-        mSongDao.add(new Song("Wahteram", "Bumboks"));
+    public List<Song> invoke() {
+        return mSongDao.getAll("Bumboks");
     }
 
     //endregion

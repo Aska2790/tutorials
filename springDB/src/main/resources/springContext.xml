@@ -33,6 +33,11 @@
         <constructor-arg name="songDao" ref="springSongDao"/>
     </bean>
 
+    <bean name="getAllAuthorSongsUseCase" class="com.aska.development.interactors.GetAllAuthorSongsUseCase">
+        <constructor-arg name="songDao" ref="springSongDao"/>
+    </bean>
+
+
     <bean name="insertSongUseCase" class="com.aska.development.interactors.InsertSongUseCase">
         <constructor-arg name="songDao" ref="springSongDao"/>
     </bean>
@@ -43,6 +48,7 @@
 
     <bean name="application" class="com.aska.development.Application">
         <constructor-arg name="getAllUseCase" ref="getAllUseCase"/>
+        <constructor-arg name="getAllAuthorSongsUseCase" ref="getAllAuthorSongsUseCase"/>
         <constructor-arg name="getUseCase" ref="getUseCase"/>
         <constructor-arg name="insertUseCase" ref="insertSongUseCase"/>
         <constructor-arg name="removeUseCase" ref="removeSongUseCase"/>
