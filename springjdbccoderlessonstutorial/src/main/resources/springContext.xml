@@ -4,8 +4,8 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <bean name="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-
-        <property name="url" value="jdbc:mysql://[(host=localhost, user=root,password=admin, autoReconnect=true,useSSL=false)]/library"/>
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://[(host=localhost, user=root,password=admin, autoReconnect=true,useSSL=false)]/development"/>
         <property name="username" value="root"/>
         <property name="password" value="admin"/>
     </bean>
@@ -21,7 +21,12 @@
         <constructor-arg name="rowMapper" ref="studentRowMapper"/>
     </bean>
 
+    <bean name="studentTableUtil" class="com.aska.development.spring_jdbc.db.dao.StudentTableUtil">
+        <constructor-arg name="template" ref="template"/>
+    </bean>
+
     <bean name="application" class="com.aska.development.spring_jdbc.Application">
+        <constructor-arg name="studentTableUtil" ref="studentTableUtil"/>
         <constructor-arg name="studentDao" ref="studentDao"/>
     </bean>
 </beans>

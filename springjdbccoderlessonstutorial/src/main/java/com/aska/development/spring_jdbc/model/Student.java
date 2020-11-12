@@ -4,7 +4,7 @@ public class Student {
     //region Fields
 
     private int mId;
-    private String name;
+    private String mName;
     private int mAge;
 
     //endregion
@@ -20,11 +20,11 @@ public class Student {
     }
 
     public String getName() {
-        return name;
+        return mName;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.mName = name;
     }
 
     public int getAge() {
@@ -41,12 +41,16 @@ public class Student {
 
     public Student(int id, String name, int age) {
         mId = id;
-        this.name = name;
+        this.mName = name;
+        mAge = age;
+    }
+
+    public Student(String name, int age) {
+        mName = name;
         mAge = age;
     }
 
     public Student() {
-
     }
 
     //endregion

@@ -35,32 +35,50 @@ public class StudentDaoImpl implements StudentDao {
 
     @Override
     public Student select(int studentId) throws Exception {
-        throw new RuntimeException();
+        String sqlQuery = "SELECT * FROM Student WHERE Id = ?";
+        return mTemplate.queryForObject(sqlQuery, new Object[] { studentId}, mRowMapper);
     }
 
     @Override
     public List<Student> selectAll() throws Exception {
-        throw new RuntimeException();
+        String sqlQuery = "SELECT * FROM Student";
+        return mTemplate.query(sqlQuery, mRowMapper);
     }
 
     @Override
     public int insert(Student student) throws Exception {
-        throw new RuntimeException();
+        Objects.requireNonNull(student);
+        String sqlQuery = "INSERT INTO Student (name, age) VALUES (?,?)";
+        final int insertedRowCount = mTemplate.update(sqlQuery, student.getName(), student.getAge());
+        if(insertedRowCount != 1){
+            throw new IllegalStateException("Failed to save student record");
+        }
+        return insertedRowCount;
     }
 
     @Override
     public void update(Student student) throws Exception {
-        throw new RuntimeException();
+        Objects.requireNonNull(student);
+        String sqlQuery = "UPDATE Student SET Name = ?, Age = ? WHERE Id = ?";
+        final int updateRowCount = mTemplate.update(sqlQuery, student.getName(), student.getAge(), student.getId());
+        if(updateRowCount != 1){
+            throw new IllegalStateException("Failed to update student record");
+        }
     }
 
     @Override
     public void delete(Student student) throws Exception {
-        throw new RuntimeException();
+        Objects.requireNonNull(student);
+        delete(student.getId());
     }
 
     @Override
     public void delete(int studentId) throws Exception {
-        throw new RuntimeException();
+        String sqlQuery = "DELETE FROM Student WHERE Id = ?";
+        final int deletedRowCount = mTemplate.update(sqlQuery, studentId);
+        if(deletedRowCount != 1){
+            throw new IllegalStateException("Failed to delete student record");
+        }
     }
 
     //endregion
