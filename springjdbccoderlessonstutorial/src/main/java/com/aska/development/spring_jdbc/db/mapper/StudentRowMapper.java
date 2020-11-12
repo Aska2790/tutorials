@@ -11,8 +11,13 @@ public class StudentRowMapper implements RowMapper<Student> {
     //region Methods
 
     @Override
-    public Student mapRow(ResultSet rs, int rowNum) throws SQLException {
-        return null;
+    public Student mapRow(ResultSet resultSet, int rowNum) throws SQLException {
+
+        int studentId = resultSet.getInt("Id");
+        String studentName = resultSet.getString("Name");
+        int studentAge = resultSet.getInt("Age");
+
+        return new Student(studentId, studentName, studentAge);
     }
 
     //endregion
