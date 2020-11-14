@@ -2,12 +2,15 @@ package com.aska.development.spring_jdbc.db.dao;
 
 import com.aska.development.spring_jdbc.dao.StudentDao;
 import com.aska.development.spring_jdbc.model.Student;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.core.namedparam.SqlParameterSourceUtils;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 
 import java.util.*;
 
@@ -35,7 +38,10 @@ public class StudentDaoImpl implements StudentDao {
         mSimpleJdbcInsert = jdbcInsert;
         mRowMapper = rowMapper;
 
-        mSimpleJdbcInsert.withTableName("student");
+        mSimpleJdbcInsert
+                .withTableName("student")
+                .usingGeneratedKeyColumns("id");
+
     }
 
     //endregion
@@ -64,11 +70,13 @@ public class StudentDaoImpl implements StudentDao {
         parameters.put("age", student.getAge());
         parameters.put("image", student.getImage());
 
-        final int insertedRowCount = mSimpleJdbcInsert.execute(parameters);
-        if (insertedRowCount != 1) {
+        // Для генерации keyHolder-a нужно указать генерируемую колонку
+        final KeyHolder keyHolder = mSimpleJdbcInsert.executeAndReturnKeyHolder(parameters);
+        if (keyHolder.getKeyList().size() != 1) {
             throw new IllegalStateException("Failed to save student record");
         }
-        return insertedRowCount;
+        return keyHolder.getKey().intValue();
+
     }
 
     @Override

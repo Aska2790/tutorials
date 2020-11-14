@@ -56,15 +56,21 @@ public class Application {
 
         printStudentList(new PrintImpl());
 
-        mStudentDao.insert(new Student("Student 1", 17));
-        mStudentDao.insert(new Student("Student 2", 18));
-        mStudentDao.insert(new Student("Student 3", 19));
+        int id = mStudentDao.insert(new Student("Student 1", 17));
+        System.out.println(id);
+
+        id = mStudentDao.insert(new Student("Student 2", 18));
+
+        System.out.println(id);
+        id = mStudentDao.insert(new Student("Student 3", 19));
+
+        System.out.println(id);
 
         Student student = new Student(4);
         student.setName("Student 4");
         student.setAge(20);
         student.setImage("Student 4".getBytes());
-        mStudentDao.insert(student);
+        id = mStudentDao.insert(student);
 
         final PrintImpl print = new PrintImpl();
         printStudentList(print);
