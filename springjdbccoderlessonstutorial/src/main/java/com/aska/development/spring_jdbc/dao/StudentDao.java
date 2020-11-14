@@ -12,6 +12,8 @@ public interface StudentDao {
 
     int insert(Student student) throws Exception;
 
+    int insert(List<Student> students) throws Exception;
+
     void update(Student student) throws Exception;
 
     void delete(Student student) throws Exception;

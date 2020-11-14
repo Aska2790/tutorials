@@ -16,13 +16,23 @@
 
     <bean name="studentRowMapper" class="com.aska.development.spring_jdbc.db.mapper.StudentRowMapper"/>
 
+    <bean name="jdbcInsert" class="org.springframework.jdbc.core.simple.SimpleJdbcInsert">
+        <constructor-arg name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <bean name="jdbcCall" class="org.springframework.jdbc.core.simple.SimpleJdbcCall">
+        <constructor-arg name="dataSource" ref="dataSource"/>
+    </bean>
+
     <bean name="studentDao" class="com.aska.development.spring_jdbc.db.dao.StudentDaoImpl">
         <constructor-arg name="template" ref="template"/>
+        <constructor-arg name="jdbcInsert" ref="jdbcInsert"/>
         <constructor-arg name="rowMapper" ref="studentRowMapper"/>
     </bean>
 
     <bean name="studentTableUtil" class="com.aska.development.spring_jdbc.db.dao.StudentTableUtil">
         <constructor-arg name="template" ref="template"/>
+        <constructor-arg name="jdbcCall" ref="jdbcCall"/>
     </bean>
 
     <bean name="application" class="com.aska.development.spring_jdbc.Application">

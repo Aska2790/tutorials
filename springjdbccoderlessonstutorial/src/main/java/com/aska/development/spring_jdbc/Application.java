@@ -6,6 +6,7 @@ import com.aska.development.spring_jdbc.model.Student;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -74,15 +75,22 @@ public class Application {
         student = mStudentDao.select(4);
         print.print(student);
 
-        mStudentDao.delete(student);
+        mStudentDao.delete(3);
         printStudentList(print);
 
 
-        final Student recordProcedure = mStudentTableUtil.getRecordProcedure(3);
+        final Student recordProcedure = mStudentTableUtil.getRecordProcedure(1);
         print.print(recordProcedure);
 
         final String studentName = mStudentTableUtil.getStudentName(2);
         System.out.println(studentName);
+
+        List<Student> students = new ArrayList<>();
+        for(int idx = 5; idx <= 10; idx++){
+            students.add(new Student("Student " + idx, 20 + idx));
+        }
+
+        final int insertStudentCount = mStudentDao.insert(students);
     }
 
     private void printStudentList(Print print) throws Exception {
@@ -106,7 +114,8 @@ public class Application {
             System.out.println(
                     "\nStudent id : " + student.getId() +
                     "\nStudent name : " + student.getName() +
-                    "\nStudent age : " + student.getAge()
+                    "\nStudent age : " + student.getAge() +
+                    "\nStudent image : " + student.getImage()
             );
         }
     }
