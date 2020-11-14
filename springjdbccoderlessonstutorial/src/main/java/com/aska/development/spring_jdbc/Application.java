@@ -74,6 +74,12 @@ public class Application {
         mStudentDao.delete(student);
         printStudentList(print);
 
+
+        final Student recordProcedure = mStudentTableUtil.getRecordProcedure(3);
+        print.print(recordProcedure);
+
+        final String studentName = mStudentTableUtil.getStudentName(2);
+        System.out.println(studentName);
     }
 
     private void printStudentList(Print print) throws Exception {
