@@ -59,7 +59,10 @@ public class Application {
         mStudentDao.insert(new Student("Student 2", 18));
         mStudentDao.insert(new Student("Student 3", 19));
 
-        Student student = new Student(4,"Student 4", 20);
+        Student student = new Student(4);
+        student.setName("Student 4");
+        student.setAge(20);
+        student.setImage("Student 4".getBytes());
         mStudentDao.insert(student);
 
         final PrintImpl print = new PrintImpl();

@@ -16,8 +16,13 @@ public class StudentRowMapper implements RowMapper<Student> {
         int studentId = resultSet.getInt("Id");
         String studentName = resultSet.getString("Name");
         int studentAge = resultSet.getInt("Age");
+        byte[] studentImage =  resultSet.getBytes("Image");
 
-        return new Student(studentId, studentName, studentAge);
+        final Student student = new Student(studentId);
+        student.setName(studentName);
+        student.setAge(studentAge);
+        student.setImage(studentImage);
+        return student;
     }
 
     //endregion

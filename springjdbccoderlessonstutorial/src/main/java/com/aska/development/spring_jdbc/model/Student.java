@@ -6,7 +6,7 @@ public class Student {
     private int mId;
     private String mName;
     private int mAge;
-
+    private byte[] mImage;
     //endregion
 
     //region Properties
@@ -35,22 +35,25 @@ public class Student {
         mAge = age;
     }
 
+    public byte[] getImage() {
+        return mImage;
+    }
+
+    public void setImage(byte[] image) {
+        mImage = image;
+    }
+
     //endregion
 
     //region Constructors
-
-    public Student(int id, String name, int age) {
-        mId = id;
-        this.mName = name;
-        mAge = age;
-    }
 
     public Student(String name, int age) {
         mName = name;
         mAge = age;
     }
 
-    public Student() {
+    public Student(int id) {
+        mId = id;
     }
 
     //endregion
