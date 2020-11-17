@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean name="song" class="com.aska.development.model.Song">
+        <property name="name" value="Shape Of My Heart"/>
+        <property name="author" value="Sting"/>
+    </bean>
+
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="org.sqlite.JDBC"/>
+        <property name="url" value="jdbc:sqlite:database/SpringDB.db"/>
+        <property name="username" value=""/>
+        <property name="password" value=""/>
+    </bean>
+
+    <bean name="connectionProvider" class="com.aska.development.db.jdbc.JdbcConnectionProvider"/>
+
+    <bean name="springSongDao" class="com.aska.development.db.spring.SpringSongDao">
+        <constructor-arg name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <bean name="jdbcSongDao" class="com.aska.development.db.jdbc.JdbcSongDao">
+        <constructor-arg name="connectionProvider" ref="connectionProvider"/>
+    </bean>
+
+    <bean name="getUseCase" class="com.aska.development.interactors.GetSongUseCase">
+        <constructor-arg name="songDao" ref="springSongDao"/>
+    </bean>
+
+    <bean name="getAllUseCase" class="com.aska.development.interactors.GetAllSongUseCase">
+        <constructor-arg name="songDao" ref="springSongDao"/>
+    </bean>
+
+    <bean name="getAllAuthorSongsUseCase" class="com.aska.development.interactors.GetAllAuthorSongsUseCase">
+        <constructor-arg name="songDao" ref="springSongDao"/>
+    </bean>
+
+
+    <bean name="insertSongUseCase" class="com.aska.development.interactors.InsertSongUseCase">
+        <constructor-arg name="songDao" ref="springSongDao"/>
+    </bean>
+
+    <bean name="removeSongUseCase" class="com.aska.development.interactors.RemoveSongUseCase">
+        <constructor-arg name="songDao" ref="springSongDao"/>
+    </bean>
+
+    <bean name="application" class="com.aska.development.Application">
+        <constructor-arg name="getAllUseCase" ref="getAllUseCase"/>
+        <constructor-arg name="getAllAuthorSongsUseCase" ref="getAllAuthorSongsUseCase"/>
+        <constructor-arg name="getUseCase" ref="getUseCase"/>
+        <constructor-arg name="insertUseCase" ref="insertSongUseCase"/>
+        <constructor-arg name="removeUseCase" ref="removeSongUseCase"/>
+    </bean>
+</beans>
